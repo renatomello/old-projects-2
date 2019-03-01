@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+
+#define N 6
+
+void main(){
+
+	int i = 0;
+
+	double JK0[N];
+	double Mbol[N];
+	double error_Mbol[N];
+	double Teff[N];
+	double error_Teff[N];
+	double logTeff[N];
+	double error_logTeff[N];
+	double logL_L0[N];
+	double error_logL_L0[N];
+	double M_M0[N];
+	double errorM_M0[N];
+
+	FILE *file = NULL;
+	FILE *file2 = NULL;
+
+	file = fopen("messineo.dat","r");
+	file2 = fopen("data_messineo.dat","w");
+	while(fscanf(file,"%lf\t%lf\t%lf\n",&JK0[i],&Mbol[i],&error_Mbol[i]) != EOF){
+		Teff[i] = (3.1 - JK0[i])*1000/0.547;
+		logTeff[i] = log10(Teff[i]);
+		error_logTeff[i] = error_Teff[i]/(logTeff[i]*log(10));
+		logL_L0[i] = (4.8 - Mbol[i])/2.5;
+		error_logL_L0[i] = error_Mbol[i]/2.5;
+		M_M0[i] = pow(10,0.5-0.1*Mbol[i]);
+		errorM_M0[i] = 0.1 * log(10) * M_M0[i] * error_Mbol[i];
+		fprintf(file2,"%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\t%lf\n",logTeff[i],error_logTeff[i],logL_L0[i],error_logL_L0[i],Mbol[i],error_Mbol[i],M_M0[i],errorM_M0[i]);
+	}
+	fclose(file);
+	fclose(file2);
+
+}
