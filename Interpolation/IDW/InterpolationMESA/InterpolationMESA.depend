@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1427465896 source:/home/renato/Dropbox/IC/2014.2015/RSG/MESA/Interpolation/IDW/InterpolationMESA/main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	"Grid.h"
+
+1427465925 /home/renato/Dropbox/IC/2014.2015/RSG/MESA/Interpolation/IDW/InterpolationMESA/Grid.h
+	<stdio.h>
+
